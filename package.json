@@ -1,0 +1,38 @@
+{
+  "name": "nextjs-security-example",
+  "version": "1.0.0",
+  "private": true,
+  "author": {
+    "name": "Rai Siqueira"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@edge-csrf/nextjs": "^2.3.0",
+    "lucide-react": "^0.437.0",
+    "next": "canary",
+    "next-safe-action": "^7.8.1",
+    "react": "canary",
+    "react-dom": "canary",
+    "zod": "^3.23.8",
+    "zod-form-data": "^2.0.2"
+  },
+  "devDependencies": {
+    "@eruptionjs/config": "^0.3.0",
+    "@tailwindcss/forms": "^0.5.8",
+    "@types/node": "^20.16.2",
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.7",
+    "postcss": "^8.4.42",
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5.5.4"
+  }
+}
