@@ -3,8 +3,9 @@ import { headers } from 'next/headers'
 import { CSRFForm } from '../../../components/csrf-form'
 import { csrfAction } from './csrf-action'
 
-export default function Page() {
-  const csrfToken = headers().get('X-CSRF-Token') || 'missing'
+export default async function Page() {
+  const headerStore = await headers()
+  const csrfToken = headerStore.get('X-CSRF-Token') || 'missing'
 
   return (
     <div className="max-w-3xl mx-auto p-6 text-center">
@@ -38,18 +39,8 @@ export default function Page() {
           Submit
         </button>
       </form>
-      {/* <form action={csrfAction} className="mb-6">
-        <legend className="font-medium mb-2">Form with CSRF (should succeed):</legend>
-        <input type="hidden" name="csrf_token" value={csrfToken} />
-        <input type="text" name="input1" className="border rounded px-3 py-2 mr-2 text-black" />
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-        >
-          Submit
-        </button>
-      </form> */}
-      <CSRFForm action={csrfAction}>
+      <CSRFForm action={csrfAction} csrfToken={csrfToken}>
+        <legend className="font-medium mb-2">Form with correct CSRF (should pass):</legend>
         <input type="text" name="input1" className="border rounded px-3 py-2 mr-2 text-black" />
         <button
           type="submit"

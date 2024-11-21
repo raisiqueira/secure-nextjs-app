@@ -1,11 +1,14 @@
 import type { FormHTMLAttributes, PropsWithChildren } from 'react'
 
-import { headers } from 'next/headers'
+import { type UnsafeUnwrappedHeaders, headers } from 'next/headers'
 
-type CSRFFormProps = PropsWithChildren<FormHTMLAttributes<HTMLFormElement>>
+type CSRFFormProps = PropsWithChildren<
+  FormHTMLAttributes<HTMLFormElement> & {
+    csrfToken: string
+  }
+>
 
-const CSRFForm = ({ children, ...rest }: CSRFFormProps) => {
-  const csrfToken = headers().get('X-CSRF-Token') || 'missing'
+const CSRFForm = ({ children, csrfToken, ...rest }: CSRFFormProps) => {
   return (
     <form {...rest}>
       <input type="hidden" name="csrf_token" value={csrfToken} />

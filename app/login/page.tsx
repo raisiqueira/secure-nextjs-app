@@ -6,7 +6,7 @@ import { LoginForm } from './login-form'
 
 export default async function LoginPage() {
   const session = await auth()
-  const csrfToken = headers().get('X-CSRF-Token') || 'missing'
+  const csrfToken = (await headers()).get('X-CSRF-Token') || 'missing'
 
   // Redirect to dashboard if the user is already logged in
   if (session) {
