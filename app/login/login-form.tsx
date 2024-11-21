@@ -18,12 +18,13 @@ export function LoginForm({ csrfToken }: LoginFormProps) {
       redirect: false,
       username: formData.get('username') as string,
       password: formData.get('password') as string,
+      csrf_token: csrfToken,
     })
 
     if (result?.error) {
       setError('Invalid username or password')
     } else {
-      router.push('/secure-page')
+      router.push('/private-page')
       router.refresh()
     }
   }

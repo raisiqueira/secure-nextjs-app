@@ -9,6 +9,7 @@ export const authConfig: NextAuthConfig = {
       credentials: {
         username: { label: 'Username', type: 'text', placeholder: 'raicds' },
         password: { label: 'Password', type: 'password' },
+        csrf_token: { label: 'Token', type: 'hidden' },
       },
       async authorize(credentials) {
         // This is where you would typically check the user credentials against your database

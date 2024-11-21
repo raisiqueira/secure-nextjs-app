@@ -10,7 +10,7 @@ export default async function LoginPage() {
 
   // Redirect to dashboard if the user is already logged in
   if (session) {
-    redirect('/secure-page')
+    redirect('/private-page')
   }
 
   return (
