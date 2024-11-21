@@ -1,5 +1,6 @@
 import { headers } from 'next/headers'
 
+import { CSRFForm } from '../../../components/csrf-form'
 import { csrfAction } from './csrf-action'
 
 export default function Page() {
@@ -37,7 +38,7 @@ export default function Page() {
           Submit
         </button>
       </form>
-      <form action={csrfAction} className="mb-6">
+      {/* <form action={csrfAction} className="mb-6">
         <legend className="font-medium mb-2">Form with CSRF (should succeed):</legend>
         <input type="hidden" name="csrf_token" value={csrfToken} />
         <input type="text" name="input1" className="border rounded px-3 py-2 mr-2 text-black" />
@@ -47,7 +48,16 @@ export default function Page() {
         >
           Submit
         </button>
-      </form>
+      </form> */}
+      <CSRFForm action={csrfAction}>
+        <input type="text" name="input1" className="border rounded px-3 py-2 mr-2 text-black" />
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+        >
+          Submit
+        </button>
+      </CSRFForm>
       <h3 className="text-xl font-semibold mt-6 mb-4">Example 2 (file upload):</h3>
       <form action={csrfAction} className="mb-6">
         <legend className="font-medium mb-2">Form without CSRF (should fail):</legend>
