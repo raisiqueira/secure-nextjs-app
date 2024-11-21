@@ -13,12 +13,13 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@edge-csrf/nextjs": "^2.3.0",
+    "@edge-csrf/nextjs": "^2.5.2",
     "lucide-react": "^0.437.0",
-    "next": "canary",
+    "next": "^15.0.3",
+    "next-auth": "5.0.0-beta.25",
     "next-safe-action": "^7.8.1",
-    "react": "canary",
-    "react-dom": "canary",
+    "react": "19.0.0-rc.1",
+    "react-dom": "19.0.0-rc.1",
     "zod": "^3.23.8",
     "zod-form-data": "^2.0.2"
   },
