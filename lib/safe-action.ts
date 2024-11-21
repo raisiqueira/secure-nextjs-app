@@ -4,6 +4,18 @@ import { z } from 'zod'
 
 export class ActionError extends Error {}
 
+/** Basic action client */
+export const actionClient = createSafeActionClient({
+  defineMetadataSchema() {
+    return z.object({
+      actionName: z.string(),
+    })
+  },
+})
+
+/**
+ * This is a simple action that logs the client input and returns it.
+ */
 export const action = createSafeActionClient({
   validationAdapter: zodAdapter(),
   handleServerErrorLog: (e) => {
