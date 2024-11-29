@@ -10,7 +10,6 @@ export default async function Home() {
         <ExampleLink href="/private-page">Private page</ExampleLink>
         <ExampleLink href="/taint">React Taint API</ExampleLink>
         <ExampleLink href="/csrf">CSRF examples</ExampleLink>
-        <ExampleLink href="/insecure-action">Insecure Server Action</ExampleLink>
         <ExampleLink href="/task-stateless">(NSA) Task Stateless</ExampleLink>
         <ExampleLink href="/task-stateful">(NSA) Task Stateful</ExampleLink>
       </div>

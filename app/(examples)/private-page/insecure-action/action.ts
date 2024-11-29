@@ -2,7 +2,7 @@
 
 import { z } from 'zod'
 
-import { actionClient } from '../../../lib/safe-action'
+import { actionClient } from '../../../../lib/safe-action'
 
 const schema = z.object({
   userId: z.number(),
