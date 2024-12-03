@@ -2,6 +2,8 @@ import { DEFAULT_SERVER_ERROR_MESSAGE, createSafeActionClient } from 'next-safe-
 import { zodAdapter } from 'next-safe-action/adapters/zod'
 import { z } from 'zod'
 
+import { auth } from '../auth'
+
 export class ActionError extends Error {}
 
 /** Basic action client */
@@ -11,6 +13,20 @@ export const actionClient = createSafeActionClient({
       actionName: z.string(),
     })
   },
+})
+
+export const authAction = actionClient.use(async ({ next }) => {
+  const session = await auth()
+
+  if (!session) {
+    throw new ActionError('Unauthorized')
+  }
+
+  return next({
+    ctx: {
+      session,
+    },
+  })
 })
 
 /**
@@ -59,37 +75,3 @@ export const action = createSafeActionClient({
   // And then return the result of the awaited next middleware.
   return result
 })
-
-async function getSessionId() {
-  return crypto.randomUUID()
-}
-
-export const authAction = action
-  // In this case, context is used for (fake) auth purposes.
-  .use(async ({ next }) => {
-    const userId = crypto.randomUUID()
-
-    console.log('HELLO FROM FIRST AUTH ACTION MIDDLEWARE, USER ID:', userId)
-
-    return next({
-      ctx: {
-        userId,
-      },
-    })
-  })
-  // Here we get `userId` from the previous context, and it's all type safe.
-  .use(async ({ ctx, next }) => {
-    // Emulate a slow server.
-    await new Promise((res) => setTimeout(res, Math.max(Math.random() * 2000, 500)))
-
-    const sessionId = await getSessionId()
-
-    console.log('HELLO FROM SECOND AUTH ACTION MIDDLEWARE, SESSION ID:', sessionId)
-
-    return next({
-      ctx: {
-        ...ctx, // here we spread the previous context to extend it
-        sessionId, // with session id
-      },
-    })
-  })

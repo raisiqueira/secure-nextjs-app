@@ -16,6 +16,7 @@ export default async function DashboardPage() {
       <p className="text-xl">Hello, {session.user?.name || 'User'}!</p>
       <hr className="mb-4" />
       <ExampleLink href="/private-page/insecure-action">Insecure Server Action</ExampleLink>
+      <ExampleLink href="/private-page/secure-action">Secure Server Action</ExampleLink>
     </div>
   )
 }
