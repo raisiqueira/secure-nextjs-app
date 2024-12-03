@@ -3,9 +3,10 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
+import { logger } from '../../../lib/logger'
+
 async function csrfAction() {
-  // eslint-disable-next-line no-console
-  console.log('passed csrf validation')
+  logger.info('passed csrf validation')
   revalidatePath('/csrf')
   redirect('/csrf')
 }

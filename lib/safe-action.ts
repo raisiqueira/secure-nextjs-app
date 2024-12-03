@@ -3,6 +3,7 @@ import { zodAdapter } from 'next-safe-action/adapters/zod'
 import { z } from 'zod'
 
 import { auth } from '../auth'
+import { logger } from './logger'
 
 export class ActionError extends Error {}
 
@@ -19,6 +20,7 @@ export const authAction = actionClient.use(async ({ next }) => {
   const session = await auth()
 
   if (!session) {
+    logger.error('Unauthorized')
     throw new ActionError('Unauthorized')
   }
 
@@ -35,7 +37,7 @@ export const authAction = actionClient.use(async ({ next }) => {
 export const action = createSafeActionClient({
   validationAdapter: zodAdapter(),
   handleServerErrorLog: (e) => {
-    console.error('CUSTOM ERROR LOG FUNCTION, server error message:', e.message)
+    logger.error('CUSTOM ERROR LOG FUNCTION, server error message:', e.message)
   },
   handleReturnedServerError: (e) => {
     // If the error is an instance of `ActionError`, unmask the message.
@@ -69,7 +71,7 @@ export const action = createSafeActionClient({
   logObject.metadata = metadata
   logObject.result = result
 
-  console.log('LOGGING FROM MIDDLEWARE:')
+  logger.info('LOGGING FROM MIDDLEWARE:')
   console.dir(logObject, { depth: null })
 
   // And then return the result of the awaited next middleware.

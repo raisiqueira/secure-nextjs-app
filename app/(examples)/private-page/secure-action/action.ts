@@ -2,6 +2,7 @@
 
 import { z } from 'zod'
 
+import { logger } from '../../../../lib/logger'
 import { authAction } from '../../../../lib/safe-action'
 
 const schema = z.object({
@@ -13,7 +14,7 @@ export const deleteUser = authAction
   .schema(schema)
   .bindArgsSchemas<[csrfToken: z.ZodString]>([z.string()])
   .action(async ({ parsedInput: { userId } }) => {
-    console.log(`Deleting user with id: ${userId}`)
+    logger.info(`Deleting user with id: ${userId}`)
     await new Promise((res) => setTimeout(res, 1000))
-    console.log(`User ${userId} deleted`)
+    logger.info(`User ${userId} deleted`)
   })

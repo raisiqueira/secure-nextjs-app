@@ -2,13 +2,15 @@
 
 import { z } from 'zod'
 
+import { logger } from '../../../../lib/logger'
+
 const schema = z.object({
   userId: z.number(),
 })
 
 export const deleteUser = async (csrfToken: string, data: z.infer<typeof schema>) => {
-  console.log(`Deleting user with id: ${data.userId}`)
+  logger.info(`Deleting user with id: ${data.userId}`)
   await new Promise((res) => setTimeout(res, 1000))
-  console.log(`User ${data.userId} deleted`)
+  logger.info(`User ${data.userId} deleted`)
   return true
 }
