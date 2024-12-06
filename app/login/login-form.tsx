@@ -40,7 +40,7 @@ export function LoginForm({ csrfToken }: LoginFormProps) {
           type="text"
           placeholder="Username"
           name="username"
-          className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+          className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-black"
           required
         />
       </div>
@@ -52,7 +52,7 @@ export function LoginForm({ csrfToken }: LoginFormProps) {
           type="password"
           placeholder="Password"
           name="password"
-          className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+          className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 text-black"
           required
         />
       </div>
